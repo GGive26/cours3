@@ -143,4 +143,32 @@ function redOne ($teams,) {
       break;  }
     }
 echo redOne($teams);
+
+foreach($teams as $teamData){
+
+    echo"<br>";
+    var_dump($teamData);
+    if ($teamData['Burkina']=="Burkina"){
+        //echo"le score = ".$teamData['score'];
+        echo"<br>";
+        $teamData['score']=5;
+    var_dump($teamData);
+    }
+}
+echo"<br>";
+var_dump($teams);
+//il y'a un soucie il faut le regler car il s'eface pas on as juste changer sur une copie 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
