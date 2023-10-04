@@ -159,16 +159,38 @@ echo"<br>";
 var_dump($teams);
 //il y'a un soucie il faut le regler car il s'eface pas on as juste changer sur une copie 
 
+function delTeam(&$teams, $teamName) {
+    foreach ($teams as $key => $team) {
+        if ($team['name'] == $teamName) {
+            unset($teams[$key]);
+        }
+    }
+    
+}
+function Update(&$teams, $newInfo,$teamName) {
+
+    foreach ($teams as $key => $team) {
+        if ($team['name'] == $teamName) {
+        $team=[
+            "name"  =>$newInfo["newName"],
+            "score" =>$newInfo["newScore"],
+            "url"   =>$newInfo["newUrl"]
+        ];
+         $teams[$key]=$team;
+    }
+    
+}
+}
+
+delTeam($teams, "togo ");    
 
 
+$newInfo=[
+    "newName"=>"maroc1",
+    "newScore"=>1,
+    "newUrl"=>"www.Maroc1.com"
 
-
-
-
-
-
-
-
-
+];
+Update($teams,$newInfo,'maroc');
 
 ?>
