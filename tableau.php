@@ -1,14 +1,12 @@
  <?php
-$team_1_data=["cameroun",3];
-echo $team_1_data[0];
+// $team_1_data=["cameroun",3];
+// echo $team_1_data[0];
 
-$team_1_data=[  
+$team_1_data=[ 
     "name"=>  "cameroun",
     "score"=>  3,
     "url"=> "www.lionsIndomptables.com"
     ];
-
-
 $team_2_data=[  
     "name"=>  "Togo",
     "score"=>  2,
@@ -37,15 +35,15 @@ var_dump($teams);
 echo"<br><br>";
 echo "<ul>";
 foreach($teams as $data){
-//if("score"== 2){
-//var_dump($teams);
-//}
+if("score"== 2){
+var_dump($teams);
+}
 echo"<br><br>";
 
 
 if($data["score"]== 2){
-//var_dump($data);
-//echo"<li>". $data['name'] ."</li>";
+// var_dump($data);
+// echo"<li>". $data['name'] ."</li>";
 ?>
 <li>l equipe du <?php echo$data["name"] ?> a <?php echo$data["score"] ?> points  </li>
 
@@ -76,7 +74,7 @@ foreach($teams as $data){
     //var_dump($data);
     //echo"<li>". $data['name'] ."</li>";
     ?>
-    <li>l equipe du <?php echo$data["name"] ?> a <?php echo$data["score"] ?> points  </li> -->
+    <li>l equipe du <?php echo$data["name"] ?> a <?php echo$data["score"] ?> points  </li> 
     
     <?php
     }
@@ -123,41 +121,31 @@ foreach($teams as $data){
     "url"=> "www.Congo.com"
     ];
     addTeam($teams,$team_5_data);
-?>
-<?php
-function redOne ($teams,) {
-    foreach($teams as $data){     
-        ?>
-            <ul>
-                <li>
-                    <?php echo$data["name"];?>
-    </li>
-                <li>
-                    <?php echo$data["score"];?>
-                </li>
-                <li>
-                    <?php echo$data["url"];?>
-                </li>
-    </ul>
-        <?php
-      break;  }
-    }
-echo redOne($teams);
-
-foreach($teams as $teamData){
-
-    echo"<br>";
-    var_dump($teamData);
-    if ($teamData['Burkina']=="Burkina"){
-        //echo"le score = ".$teamData['score'];
-        echo"<br>";
-        $teamData['score']=5;
-    var_dump($teamData);
-    }
+?><?php
+    
+function readOne($team) {
+    echo "<table border='1'>";
+    echo "<tr>";
+        foreach ($team as $key => $value) {
+            echo "<td>$value</td>";
+        }
+        echo "</tr>";
+    
+    echo "</table>";
 }
-echo"<br>";
-var_dump($teams);
-//il y'a un soucie il faut le regler car il s'eface pas on as juste changer sur une copie 
+
+
+function readAll($teams) {
+    echo "<table border='1'>";
+    foreach ($teams as $team) {
+        echo "<tr>";
+        foreach ($team as $key => $value) {
+            echo "<td>$value</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
+}
 
 function delTeam(&$teams, $teamName) {
     foreach ($teams as $key => $team) {
@@ -180,17 +168,51 @@ function Update(&$teams, $newInfo,$teamName) {
     }
     
 }
+showTeams($teams);
 }
+ 
+echo "<h2>team 1:</h2>";
+readOne($team_1_data);
 
-delTeam($teams, "togo ");    
+echo "<h2>team 2:</h2>";
+readOne($team_2_data);
+delTeam($teams,'burkina');
+
+echo "<h2>Toutes les equipes avant dajouter burkina :</h2>";
+readAll($teams);
+echo"<br>";
+
+$newTeamData = [
+    "name" => "burkina",
+    "score" => 4,
+    "url" => "www.burkina.com"
+];
+addTeam($teams, $newTeamData);
+
+echo "<h2>Toutes les equipes apres ajouter burkina:</h2>";
+readAll($teams);
 
 
+delTeam($teams, "Togo");    
+
+echo "<h2>Toutes les equipes apres supprimer togo:</h2>";
+readAll($teams);
+$team_6_data=[
+    "name"=> 'maroc',
+    "score"=>3,
+    "url"=>"www.maroc.com"
+];
+echo"<br>";
+addTeam($teams,$team_6_data);
+echo"<br>";
 $newInfo=[
     "newName"=>"maroc1",
     "newScore"=>1,
     "newUrl"=>"www.Maroc1.com"
-
 ];
+echo"<br>";
 Update($teams,$newInfo,'maroc');
-
+echo"<br>";
+echo "<h2>Toutes les equipes apres changer info de maroc:</h2>";
+readAll($teams);
 ?>
